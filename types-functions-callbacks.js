@@ -72,7 +72,17 @@ var sum = function(num1,num2) {
     return num1 + num2
 }
 
+// Can also write //
+
+var sum = function(num1,num2) {
+    if (typeof num1 !== 'number' || typeof num2 !== 'number') {
+        return null
+    }
+    return num1 + num2
+}
+
 console.assert(sum(867, 5309) === 6176);
+console.log(typeof sum('867', 5309))
 console.assert(sum('867', 5309) === null);
 console.assert(sum(true, 5) === null);
 
@@ -87,7 +97,13 @@ var isNegative = function(number) {
 	return false
 	}
 	return true
-} 
+}
+
+// or 
+
+var isNegative = function(number) {
+    return number < 0
+}
 
 console.assert(isNegative(10) === false)
 console.assert(isNegative(0) === false)
@@ -101,7 +117,10 @@ console.assert(isNegative(-999) === true)
 
 
 var sum = function(num1,num2) {
-    if (isNegative !== true) {
+    if (typeof num1 !== 'number' || typeof num2 !== 'number') {
+        return null
+    }
+    if (isNegative(num1) || isNegative(num2)) {
         return null
     }
     return num1 + num2
@@ -137,11 +156,9 @@ console.assert(X === 11)
 
 
 var x = 10 
-var increment = function(X) {
-	return X + 1
+var increment = function(number) {
+	return number + 1
 }
-
-// NOTE FROM KAYLAN I did this, but not sure I understand it...but it was true?
 
 console.assert(x === 10)
 var y = increment(x)
@@ -241,7 +258,7 @@ console.assert(NUMBER === 48)
 
 var conditionallyInvoke = function(someFunction){
 	if (ORACLE === 'YES') {
-        return someFunction()
+        someFunction()
     }
 }
 
@@ -259,6 +276,13 @@ console.assert(NUMBER === 96)
 // Make the following assertion work:
 
 
+var someFunction = function() {
+    return 'hello world'
+}
+
+var factory = function() {
+    return someFunction 
+}
 
 console.assert(factory()() === 'hello world')  // INCEPTION!
 
@@ -266,6 +290,10 @@ console.assert(factory()() === 'hello world')  // INCEPTION!
 // Part 11
 
 // Want more? 
+
+var factory2 = function() {
+    
+}
 
 console.assert(factory2()('you sly dog') === 'you sly dog')
 console.assert(factory2()(999) === 999)
